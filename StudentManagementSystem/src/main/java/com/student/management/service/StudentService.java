@@ -2,6 +2,7 @@ package com.student.management.service;
 
  
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.transaction.Transactional;
@@ -19,7 +20,10 @@ public class StudentService {
     private StudentRepository repo;
      
     public List<Student> listAll() {
-        return (List<Student>) repo.findAll();
+       
+        List<Student> books = new ArrayList<Student>();  
+        repo.findAll().forEach(books1 -> books.add(books1));  
+        return books;  
     }
      
     public void save(Student student) {

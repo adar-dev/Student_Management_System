@@ -28,6 +28,31 @@ public class StudentController {
 	public List<Student> list() {
 	    return service.listAll();
 	}
+	@GetMapping("/studentstatus/{id}")
+	public ResponseEntity<String> getStatus(@PathVariable Integer id) {
+		
+		try {
+	    	Student student = service.get(id);
+	    	Float avg = (student.getPhysics()+student.getChemistry()+student.getBiology())/3;
+	    	if(avg>=60) {
+	    		return new ResponseEntity<String>("1st Division", HttpStatus.OK);
+	    		
+	    	}
+	    	else if(avg>=40) {
+	    		return new ResponseEntity<String>("2nd Division", HttpStatus.OK);
+	    		
+	    	}
+	    	else {
+	    		return new ResponseEntity<String>("Failed", HttpStatus.OK);
+	    	}
+	    	
+	        
+	    } catch (NoSuchElementException e) {
+	        return new ResponseEntity<String>(HttpStatus.NOT_FOUND);
+	        
+	    } 
+	}
+	
 	
 	@GetMapping("/students/{id}")
 	public ResponseEntity<Student> get(@PathVariable Integer id) {
