@@ -26,13 +26,13 @@ public class StudentController {
 	
 	@GetMapping("/students")
 	public List<Student> list() {
-	    return service.listAll();
+	    return service.getAllStudents();
 	}
 	@GetMapping("/studentstatus/{id}")
 	public ResponseEntity<String> getStatus(@PathVariable Integer id) {
 		
 		try {
-	    	Student student = service.get(id);
+	    	Student student = service.getStudentById(id);
 	    	Float avg = (student.getPhysics()+student.getChemistry()+student.getBiology())/3;
 	    	if(avg>=60) {
 	    		return new ResponseEntity<String>("1st Division", HttpStatus.OK);
@@ -57,7 +57,7 @@ public class StudentController {
 	@GetMapping("/students/{id}")
 	public ResponseEntity<Student> get(@PathVariable Integer id) {
 	    try {
-	    	Student student = service.get(id);
+	    	Student student = service.getStudentById(id);
 	        return new ResponseEntity<Student>(student, HttpStatus.OK);
 	    } catch (NoSuchElementException e) {
 	        return new ResponseEntity<Student>(HttpStatus.NOT_FOUND);
@@ -67,13 +67,13 @@ public class StudentController {
 	
 	@PostMapping("/students")
 	public void add(@RequestBody Student student) {
-	    service.save(student);
+	    service.insertStudent(student);
 	}
 	@PutMapping("/students/{id}")
 	public ResponseEntity<?> update(@RequestBody Student student, @PathVariable Integer id) {
 	    try {
-	    	Student existStudent = service.get(id);
-	        service.save(student);
+	    	Student existStudent = service.getStudentById(id);
+	        service.editStudent(student);
 	        return new ResponseEntity<>(HttpStatus.OK);
 	    } catch (NoSuchElementException e) {
 	        return new ResponseEntity<>(HttpStatus.NOT_FOUND);
@@ -81,7 +81,7 @@ public class StudentController {
 	}
 	@DeleteMapping("/students/{id}")
 	public void delete(@PathVariable Integer id) {
-	    service.delete(id);
+	    service.deleteStudent(id);
 	}
 
 

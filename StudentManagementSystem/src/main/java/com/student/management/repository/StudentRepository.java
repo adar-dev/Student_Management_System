@@ -8,6 +8,6 @@ import org.springframework.data.repository.CrudRepository;
 
 import com.student.management.model.Student;
 
-public interface StudentRepository extends CrudRepository<Student, Integer> {
+public interface StudentRepository extends CrudRepository<Student, Integer>, JpaRepository<Student,Integer> {
 	 
 }
