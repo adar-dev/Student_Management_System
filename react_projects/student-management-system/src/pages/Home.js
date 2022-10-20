@@ -1,6 +1,28 @@
-import React, { useState } from 'react'
-
+import React, { useState,useEffect } from 'react'
+import axios from 'axios'
+import { Link ,useNavigate, useParams} from 'react-router-dom'
 export default function Home() {
+
+    const [student,setStudent]=useState([]);
+
+    const {id}=useParams()
+
+    useEffect(()=>{
+        loadStudent();
+    },[])
+
+    
+
+    const loadStudent=async()=>{
+        const result=await axios.get("");
+        setStudent(result.data);
+    };
+
+    const deleteStudent=async()=>{
+        await axios.delete(``);
+        loadStudent()
+
+    };
 
     return (
         <div className='container'>
@@ -27,8 +49,12 @@ export default function Home() {
                             <td>1</td>
                             <td>
                                 <button className="btn btn-primary mx-2">View Report</button>
-                                <button className="btn btn-primary mx-2">Update</button>
-                                <button className="btn btn-primary mx-2">Delete</button>
+                                <Link className="btn btn-primary mx-2" 
+                                to={`/updateStudent/${student.id}`}
+                                >Update</Link>
+                                <button className="btn btn-primary mx-2"
+                                onClick={()=>deleteStudent(student.id)}
+                                >Delete</button>
                             </td>
                         </tr>
                         
