@@ -1,8 +1,11 @@
 package com.student.management.controller;
 
 import java.util.List;
+import java.util.Map;
 import java.util.NoSuchElementException;
 import java.util.Optional;
+
+import javax.ws.rs.Consumes;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -25,7 +28,9 @@ import com.student.management.service.StudentService;
 
 
 @RestController
+
 @CrossOrigin(origins = "http://localhost:3000")
+
 @RequestMapping("api")
 
 public class StudentController {
@@ -76,42 +81,29 @@ public class StudentController {
 	}
 	
 	@PostMapping("/students")
-	public void add(@RequestBody Student student) {
+	 @Consumes({"application/json", "application/x-www-form-urlencoded"})
+	
+	
+	public ResponseEntity<Object> add(@RequestBody Student student) {
+		System.out.println(student);
 	    service.insertStudent(student);
+	    return new ResponseEntity<>("posted", HttpStatus.OK);
 	}
 	
 	@PutMapping("/students/{id}" )
+	@Consumes({"application/json", "application/x-www-form-urlencoded"})
 	
-	public String update( @PathVariable Integer id,@RequestBody Student student) {
+	
+	public String update( @RequestBody Student student) {
 	    try {
 	    	System.out.println(student);
 	        return service.editStudent(student);
-//	    	return null;
+
 	    } catch (NoSuchElementException e) {
 	        throw new StudentNotFoundException("Student not found");
 	    }      
 	}
-//	@PutMapping("/students/{id}")
-//	public ResponseEntity<Student> update(@PathVariable("id") Integer id, @RequestBody Student student) {
-//		Optional<Student> studentData = repo.findById(id);
-//		System.out.println(student);
-//
-//		if (studentData.isPresent()) {
-//			Student s = studentData.get();
-//			s.setId(student.getId());
-//			s.setName(student.getName());
-//			s.setDateOfAdmission(student.getDateOfAdmission());
-//			s.setPhysics(student.getPhysics());
-//			s.setChemistry(student.getChemistry());
-//			s.setBiology(student.getBiology());
-//		
-//			
-//			return new ResponseEntity<>(repo.save(s), HttpStatus.OK);
-//		} else {
-//			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-//		}
-//	}
-//	
+
 	@DeleteMapping("/students/{id}")
 	public void delete(@PathVariable Integer id) {
 	    service.deleteStudent(id);
