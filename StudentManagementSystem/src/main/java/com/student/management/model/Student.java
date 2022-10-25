@@ -118,6 +118,13 @@ public class Student {
 	}
 
 
+	@Override
+	public String toString() {
+		return "Student [id=" + id + ", name=" + name + ", dateOfAdmission=" + dateOfAdmission + ", physics=" + physics
+				+ ", chemistry=" + chemistry + ", biology=" + biology + "]";
+	}
+
+
 	
    
  
