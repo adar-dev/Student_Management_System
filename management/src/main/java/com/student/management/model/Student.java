@@ -18,9 +18,10 @@ import lombok.NoArgsConstructor;
 @Builder
 
 @Entity
-@Table(name = "student")
+@Table(name = "student")   //name of the database table
 public class Student {
 	
+	//this class creates the entities of the database table and initializes them.
 	 
     @Id
 //    @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -42,10 +43,11 @@ public class Student {
     @Column(name="biology")
     private float biology;
  
+    //default constructor
     public Student() {
     }
  
-    
+    //constructor used for initialization
     public Student(Integer id, String name, String dateOfAdmission, float physics, float chemistry, float biology) {
 		super();
 		this.id = id;
@@ -56,7 +58,7 @@ public class Student {
 		this.biology = biology;
 	}
    
-
+    //Gettes and setters methods for id,name,dateofAdmission,physics,chemistry and biology
 
 	public Integer getId() {
 		return id;
@@ -128,6 +130,6 @@ public class Student {
 	
    
  
-    // other getters and setters...
+    
 }
 

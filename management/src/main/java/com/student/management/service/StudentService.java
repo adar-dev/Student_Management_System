@@ -23,15 +23,21 @@ public class StudentService {
 	
 	private StudentRepositoryImpl repoImpl;
 	
+	//inserts the new student data and saves it
 	public String insertStudent(Student s) {
 
 		return repoImpl.saveStudent(s);
 	}
-
+	
+	//updates the student data
 	public String editStudent(Student s) {
 
 		return repoImpl.editStudent(s);
 	}
+	
+	/*displays the list of the students 
+	 * try catch is used to check whether the list is empty or not.
+	 */
 	public ArrayList<Student> getAllStudents() {
 
 		ArrayList<Student> ListAll = new ArrayList<Student>();
@@ -59,6 +65,8 @@ public class StudentService {
 		}
 		return nameList;
 	}
+	
+	//display the details for the student with given id
 	public Student getStudentById(Integer id) {
 		
 		Student s = null;
@@ -72,6 +80,8 @@ public class StudentService {
 		}
 		return s;
 	}
+	
+	//deletes the student by id
 	public void deleteStudent(Integer id) {
       repoImpl.deleteStudentById(id);
   }

@@ -39,10 +39,18 @@ public class StudentController {
 	@Autowired
     StudentRepository repo;
 	
+	//To get the list of all the students present in the database.
 	@GetMapping("/students")
 	public List<Student> list() {
 	    return service.getAllStudents();
 	}
+	
+	
+	/*To get the division/status of student of a specified id.
+	 * If the avg score is above 60 then --> 1st div
+	 *  If the avg score is between 40 and 60 then -->2nd div
+	 *  If the avg score is below 40 then --> Failed
+	 * */
 	@GetMapping("/students/status/{id}")
 	public ResponseEntity<String> getStatus(@PathVariable Integer id) {
 		
@@ -68,7 +76,7 @@ public class StudentController {
 	    } 
 	}
 	
-	
+	//To get the student details based on given id.
 	@GetMapping("/students/{id}")
 	public ResponseEntity<Student> get(@PathVariable Integer id) {
 	    try {
@@ -80,6 +88,8 @@ public class StudentController {
 	    }      
 	}
 	
+	
+	//This method adds the new student details to the database table.
 	@PostMapping("/students")
 	 @Consumes({"application/json", "application/x-www-form-urlencoded"})
 	
@@ -90,6 +100,7 @@ public class StudentController {
 	    return new ResponseEntity<>("posted", HttpStatus.OK);
 	}
 	
+	//This method is used to update the data of the existing student.
 	@PutMapping("/students/{id}" )
 	@Consumes({"application/json", "application/x-www-form-urlencoded"})
 	
@@ -103,7 +114,9 @@ public class StudentController {
 	        throw new StudentNotFoundException("Student not found");
 	    }      
 	}
-
+	
+	
+	//This method deletes the student details based on id.
 	@DeleteMapping("/students/{id}")
 	public void delete(@PathVariable Integer id) {
 	    service.deleteStudent(id);

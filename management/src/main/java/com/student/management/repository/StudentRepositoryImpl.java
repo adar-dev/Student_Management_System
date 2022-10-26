@@ -12,7 +12,7 @@ public class StudentRepositoryImpl {
 	@Autowired
 	private StudentRepository repo;
 	
-	
+	//find the student with given id in the database
 	public String saveStudent(Student s) {
 		Optional<Student> insertStudent = repo.findById(s.getId());
 		if (insertStudent.isPresent()) {
@@ -23,6 +23,7 @@ public class StudentRepositoryImpl {
 		}
 	}
 	
+	//find and allow the user to edit the details of the student by id and then save it 
 	public String editStudent(Student s) {
 		Optional<Student> insertStudent = repo.findById(s.getId());
 		if (insertStudent.isPresent()) {
@@ -39,12 +40,13 @@ public class StudentRepositoryImpl {
 		return "true";
 	}
 	
+	//creates a arraylist of all the students present in the database and returns the list
 	public ArrayList<Student> allStudents() {
 		ArrayList<Student> ListAll = (ArrayList<Student>) repo.findAll();
 		return ListAll;
 	}
 
-	
+	//creates a arraylist of the names of the students and returns it
 	public ArrayList<Student> findByName(String name) {
 
 		ArrayList<Student> ListAll = (ArrayList<Student>) repo.findAll();
@@ -55,9 +57,13 @@ public class StudentRepositoryImpl {
 		}
 		return nameList;
 	}
+	
+	//finds the student by id 
 	public Student findById(Integer id) {
 		return repo.findById(id).get();
 	}
+	
+	//deletes the student
 	public void deleteStudentById(Integer id) {
 		repo.deleteById(id);
 	}
