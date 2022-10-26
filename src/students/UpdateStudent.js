@@ -1,6 +1,9 @@
 import React,{useState} from 'react'
 
 import { Link,useNavigate,useLocation } from 'react-router-dom';
+/**
+ * Update Student form
+ */
 
 export default function UpdateStudent() {
   const location = useLocation();
@@ -17,7 +20,9 @@ export default function UpdateStudent() {
     biology:""
   });
 
-
+/*
+  onInpuChange storing the information given by the user.
+*/
   const onInputChange=(e)=>{
     e.preventDefault()
     const{name,value}= e.target
@@ -26,7 +31,9 @@ export default function UpdateStudent() {
 
   };
 
- 
+ /*
+   onSubmit change the information for the particular student id.
+ */
 
   const onSubmit=async(e)=>{
 

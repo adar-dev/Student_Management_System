@@ -1,8 +1,14 @@
 import React,{useState} from 'react'
 
 import { Link,useNavigate } from 'react-router-dom';
+/*
+  Add Student Form
+*/
 
 export default function AddStudent() {
+  /**
+   * Object for Student information
+   */
 
   let navigate=useNavigate()
 
@@ -15,7 +21,10 @@ export default function AddStudent() {
     biology:""
   });
 
-
+/**
+ * 
+ * @param {e} e : event onInputChange to store the input given by the user and onSubmit passing the information tp the backend 
+ */
   
   const onInputChange=(e)=>{
 

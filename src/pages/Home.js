@@ -5,17 +5,33 @@ import { Link ,useNavigate, useParams} from 'react-router-dom'
 
 import StudentDataService from "../services/student.service"
 import StudentRow from "../component/rowComp.js"
+/*
+Home page that consists of table with columns RollNo,Name,Physics,Chemistry,Biology,Divions and Actions.
+Action buttons :- View Report , Update, Delete.
+
+*/
 export default function Home() {
 
     
 
     const {id}=useParams()
+    /*
+    Object storing student information
+    */
 
     const [studentArr,setStudentArr]=useState([]);
+
+    /*
+    To load the user information. 
+    */
 
     useEffect(()=>{
         loadStudent();
     },[studentArr])
+
+    /*
+    To get the information from backend using axios
+    */ 
 
     const loadStudent=async()=>{
         const result= StudentDataService.getAll().then(response=> {

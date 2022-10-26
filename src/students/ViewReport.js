@@ -4,6 +4,9 @@ import {Link} from "react-router-dom"
 import StudentDataService from "../services/student.service"
 import { useLocation } from "react-router-dom";
 export default function ViewReport(props) {
+  /*
+  View Report card to show the information of the particular student id.
+  */
   const location = useLocation();
   console.log(location.state.userId)
 

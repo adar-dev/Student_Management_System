@@ -2,6 +2,12 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import { useNavigate } from "react-router-dom";
 
+/*
+
+This is Navbar design with button Add Student.
+Student Management System acts as link redirecting to the home page.
+Add Student button redirects to the AddStudent page.
+*/
 
 export default function Navbar()
 
